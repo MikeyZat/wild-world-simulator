@@ -97,4 +97,19 @@ public class Genes {
     public void setGenesArray(int[] genesArray){
         this.genesArray = genesArray;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (!(other instanceof Genes))
+            return false;
+        Genes that = (Genes) other;
+        if (genesRange != that.getGenesRange() || length != that.getLength()) return false;
+
+        for (int i=0; i < length; i++) {
+            if (genesArray[i] != that.getGenesArray()[i]) return false;
+        }
+        return true;
+    }
 }
