@@ -40,16 +40,21 @@ public class Genes {
 
         int maxSeparation = Math.max(firstSeparation, secondSeparation);
 
-        System.arraycopy(firstGenes.getGenesArray(), 0, genesArray, 0, maxSeparation);
-        System.arraycopy(secondGenes.getGenesArray(), maxSeparation, genesArray, maxSeparation, length);
-
+        for (int i=0; i<maxSeparation; i++) {
+            genesArray[i] = firstGenes.getGenesArray()[i];
+        }
+        for (int i=maxSeparation; i<length; i++) {
+            genesArray[i] = secondGenes.getGenesArray()[i];
+        }
         fixGenes();
     }
 
 
-    public MapDirection getNextMove() {
-        return MapDirection.N;
+    public MapDirection getNextMove(MapDirection previousPosition) {
+        int delta = genesArray[(int)(Math.random()*length)];
+        return previousPosition.getNextDirection(delta);
     }
+
 
 
     public void fillWithRandomGenes() {
@@ -58,7 +63,7 @@ public class Genes {
         }
     }
 
-    private void fixGenes() {
+    public void fixGenes() {
         int[] values = new int[genesRange];
         for (int value : genesArray) {
             values[value] += 1;
@@ -66,7 +71,7 @@ public class Genes {
         for (int i = 0; i < genesRange; i++) {
             if (values[i] == 0) {
                 int randomIndex = (int) (Math.random() * (length));
-                while (values[genesArray[randomIndex]] > 1) {   // If we want to add missing gene we can't completely remove another gene
+                while (values[genesArray[randomIndex]] < 2) {   // If we want to add missing gene we can't completely remove another gene
                     randomIndex = (int) (Math.random() * (length));
                 }
                 genesArray[randomIndex] = i;
@@ -87,5 +92,9 @@ public class Genes {
 
     public int getGenesRange() {
         return genesRange;
+    }
+
+    public void setGenesArray(int[] genesArray){
+        this.genesArray = genesArray;
     }
 }

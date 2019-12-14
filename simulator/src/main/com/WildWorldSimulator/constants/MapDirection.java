@@ -7,16 +7,18 @@ import java.util.Random;
 public enum MapDirection {
     N,
     NE,
-    NW,
     E,
-    S,
     SE,
+    S,
     SW,
-    W;
+    W,
+    NW;
+
+    private static MapDirection[] valuesCopy = values(); // make static copy to avoid array copying
 
     public static MapDirection getRandomDirection() {
         Random generator = new Random();
-        return values()[generator.nextInt(values().length)];
+        return valuesCopy[generator.nextInt(valuesCopy.length)];
     }
 
     public Point toUnitVector() {
@@ -33,5 +35,10 @@ public enum MapDirection {
             case SW: x = -1; y = -1; break;
         }
         return new Point(x, y);
+    }
+
+    public MapDirection getNextDirection(int delta) {
+        int nextIndex = (this.ordinal() + delta) % valuesCopy.length;
+        return valuesCopy[nextIndex];
     }
 }

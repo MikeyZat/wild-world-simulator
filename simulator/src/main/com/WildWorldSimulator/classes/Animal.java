@@ -15,20 +15,17 @@ public class Animal implements IMapObject, IPositionChangeSubject {
 
     // CONSTRUCTORS
 
-    public Animal(int x, int y) {
-        position = new Point(x, y);
-        orientation = MapDirection.getRandomDirection();
-    }
-
-    public Animal(Point startingPoint) {
+    public Animal(Point startingPoint, int startEnergy) {
         position = startingPoint;
         orientation = MapDirection.getRandomDirection();
+        energy = startEnergy;
     }
 
-    public Animal(Point startingPoint, Genes newGenes) {
+    public Animal(Point startingPoint, Genes newGenes, int startEnergy) {
         position = startingPoint;
         orientation = MapDirection.getRandomDirection();
         genes = newGenes;
+        energy = startEnergy;
     }
 
     // GETTERS & SETTERS
@@ -36,6 +33,10 @@ public class Animal implements IMapObject, IPositionChangeSubject {
     public Point getPosition() {
         return position;
     }
+
+    public Genes getGenes() { return genes; }
+
+    public int getEnergy() { return energy; }
 
     public void setMap(IWorldMap map) {
         this.map = map;
@@ -47,7 +48,7 @@ public class Animal implements IMapObject, IPositionChangeSubject {
     // ANIMAL'S PURPOSE OF LIFE
 
     public void move() {
-        orientation = genes.getNextMove();
+        orientation = genes.getNextMove(orientation);
         Point newPosition = position.add(orientation.toUnitVector());
         if (map != null) {
             int mapSize = map.getStartingParams().size;
@@ -62,8 +63,8 @@ public class Animal implements IMapObject, IPositionChangeSubject {
             } else if (grassOnNextField != null) {
                 eatGrass(newPosition);
             }
+            energy -= map.getStartingParams().everydayEnergyLoss;
         }
-        energy -= map.getStartingParams().everydayEnergyLoss;
         if (energy <= 0) {
             notifyObserversAnimalDied(position);
             return;
@@ -80,7 +81,13 @@ public class Animal implements IMapObject, IPositionChangeSubject {
     }
 
     private void copulateWith(Animal animalToCopulate) {
-
+        Point childPosition = position.add(MapDirection.getRandomDirection().toUnitVector());
+        Genes childGenes = new Genes(genes, animalToCopulate.getGenes());
+        int childEnergy = energy/4 + animalToCopulate.getEnergy()/4;
+        Animal child = new Animal(childPosition, childGenes, childEnergy);
+        map.place(child);
+        energy -= energy/4;
+        animalToCopulate.energy -= animalToCopulate.getEnergy()/4;
     }
 
     // OBSERVER METHODS
