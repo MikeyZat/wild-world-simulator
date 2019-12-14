@@ -14,12 +14,17 @@ public class AnimalTest {
     private Animal animal_0_1;
     StartingParams startingParams = new StartingParams(
             10,
+            10,
+            3,
+            3,
             32,
             8,
             25,
             25,
             1,
-            5
+            5,
+            0,
+            0
     );
     WorldMap map;
 

@@ -54,8 +54,9 @@ public class Animal implements IMapObject, IPositionChangeSubject {
 
         orientation = genes.getNextMove(orientation);
         Point newPosition = position.add(orientation.toUnitVector());
-        int mapSize = map.getStartingParams().size;
-        newPosition = new Point(newPosition.x % mapSize, newPosition.y % mapSize);
+        int mapWidth = map.getStartingParams().width;
+        int mapHeight = map.getStartingParams().height;
+        newPosition = new Point(newPosition.x % mapWidth, newPosition.y % mapHeight);
         Animal animalToCopulate = map.animalAt(newPosition);
         Grass grassOnNextField = map.grassAt(newPosition);
         if (animalToCopulate != null) {
