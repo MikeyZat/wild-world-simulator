@@ -9,27 +9,22 @@ import java.util.*;
 public class WorldMap implements IWorldMap, IPositionChangeObserver {
     private Map<Point, Grass> grasses = new HashMap<>();
     private Map<Point, Animal> animals = new HashMap<>();
-    private List<Animal> animalsList = new ArrayList<>();
-    private Point lowerLeft;
-    private Point upperRight;
-    private int size;
+    private StartingParams startingParams;
 
-    public WorldMap(StartingParams startingParams){
-        lowerLeft = startingParams.lowerLeft;
-        upperRight = startingParams.upperRight;
-        size = startingParams.size;
+    public WorldMap(StartingParams startingParams) {
+        this.startingParams = startingParams;
     }
 
 
     public Grass grassAt(Point position) {
-        if (grasses.containsKey(position)){
+        if (grasses.containsKey(position)) {
             return grasses.get(position);
         }
         return null;
     }
 
     public Animal animalAt(Point position) {
-        if (animals.containsKey(position)){
+        if (animals.containsKey(position)) {
             return animals.get(position);
         }
         return null;
@@ -46,7 +41,6 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
     public Animal removeAnimalFromMap(Point position) {
         Animal animal = animals.get(position);
         animals.remove(position);
-        animalsList.remove(animal);
         return animal;
     }
 
@@ -63,17 +57,12 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
         moveAnimals();
     }
 
-    @Override
-    public int getSize() {
-        return size;
-    }
-
-    private void spawnGrass(){
+    private void spawnGrass() {
 
     }
 
-    private void moveAnimals(){
-        for (Animal animal : animalsList){
+    private void moveAnimals() {
+        for (Animal animal : animals.values()) {
             animal.move();
         }
     }
@@ -84,14 +73,13 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
     }
 
     @Override
-    public boolean place(Animal animal) throws IllegalArgumentException{
+    public boolean place(Animal animal) throws IllegalArgumentException {
         Point position = animal.getPosition();
         if (animalAt(position) == null) {
             animals.put(position, animal);
-            animalsList.add(animal);
             animal.setMap(this);
             animal.addObserver(this);
-            if (grassAt(position) != null){
+            if (grassAt(position) != null) {
                 animal.eatGrass(position);
             }
             return true;
@@ -100,7 +88,7 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
     }
 
     @Override
-    public void positionChanged(Point oldPosition, Point newPosition){
+    public void positionChanged(Point oldPosition, Point newPosition) {
         Animal animal = animals.get(oldPosition);
         animals.remove(oldPosition);
         animals.put(newPosition, animal);
@@ -115,6 +103,11 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
     @Override
     public String toString() {
         MapVisualizer visualizer = new MapVisualizer(this);
-        return visualizer.draw(lowerLeft, upperRight);
+        return visualizer.draw(startingParams.lowerLeft, startingParams.upperRight);
+    }
+
+    @Override
+    public StartingParams getStartingParams() {
+        return startingParams;
     }
 }

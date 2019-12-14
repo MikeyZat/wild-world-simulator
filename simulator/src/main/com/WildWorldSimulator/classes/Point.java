@@ -10,31 +10,31 @@ public class Point {
     }
 
     @Override
-    public String toString(){
-        return "(" + x +","+y+")";
+    public String toString() {
+        return "(" + x + "," + y + ")";
     }
 
-    public boolean precedes(Point other){
+    public boolean precedes(Point other) {
         return (x <= other.x && y <= other.y);
     }
 
-    public boolean follow(Point other){
+    public boolean follow(Point other) {
         return (x >= other.x && y >= other.y);
     }
 
-    public Point upperRight(Point other){
+    public Point upperRight(Point other) {
         return new Point(Math.max(x, other.x), Math.max(y, other.y));
     }
 
-    public Point lowerLeft(Point other){
+    public Point lowerLeft(Point other) {
         return new Point(Math.min(x, other.x), Math.min(y, other.y));
     }
 
-    public Point add(Point other){
+    public Point add(Point other) {
         return new Point(x + other.x, y + other.y);
     }
 
-    public Point substract(Point other){
+    public Point substract(Point other) {
         return new Point(x - other.x, y - other.y);
     }
 
@@ -53,10 +53,10 @@ public class Point {
         int hash = 13;
         hash += this.x * 1211;
         hash += this.y * 1337;
-        return hash%32181246;
+        return hash % 32181246;
     }
 
-    public Point opposite(){
+    public Point opposite() {
         return new Point(-x, -y);
     }
 }

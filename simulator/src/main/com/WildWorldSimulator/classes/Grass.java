@@ -4,11 +4,12 @@ import com.WildWorldSimulator.interfaces.IMapObject;
 
 public class Grass implements IMapObject {
     private Point position;
-    public Grass(Point position){
+
+    public Grass(Point position) {
         this.position = position;
     }
 
-    public Point getPosition(){
+    public Point getPosition() {
         return position;
     }
 
