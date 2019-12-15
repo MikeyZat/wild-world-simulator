@@ -1,4 +1,6 @@
 package com.WildWorldSimulator.util;
+import com.WildWorldSimulator.constants.Statistics;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -6,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import com.WildWorldSimulator.constants.StartingParams;
 
@@ -32,7 +35,11 @@ public class JsonParser {
                     jungleRatio
             );
         } catch (IOException | ParseException | ClassCastException e) {
-            throw new JsonParserException("Błąd wczytywania pliku json", e);
+            throw new JsonParserException("Error while reading JSON file using JsonParser", e);
         }
+    }
+
+    public static void writeStatsToJson(List<Statistics> stats, String fileName) {
+        JSONArray statsAsJson = new JSONArray();
     }
 }

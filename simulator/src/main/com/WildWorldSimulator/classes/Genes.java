@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class Genes {
     private int[] genesArray;
+    private int[] genesFrequency;
     private int length;
     private int genesRange;
 
@@ -17,6 +18,7 @@ public class Genes {
     public Genes(int length, int genesRange) {
         this(length);
         this.genesRange = genesRange;
+        this.genesFrequency = new int[genesRange];
         fillWithRandomGenes();
         fixGenes();
     }
@@ -79,11 +81,16 @@ public class Genes {
                 values[genesArray[randomIndex]]--;
             }
         }
+        genesFrequency = values.clone();
         Arrays.sort(genesArray);
     }
 
     public int[] getGenesArray() {
         return genesArray;
+    }
+
+    public int[] getGenesFrequency() {
+        return genesFrequency;
     }
 
     public int getLength() {

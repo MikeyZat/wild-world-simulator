@@ -70,8 +70,8 @@ public class StartingParams {
             startingEnergy,
             everydayEnergyLoss,
             grassEnergy,
-            10,
-            100,
+            30,
+            300,
             2
     );
     }

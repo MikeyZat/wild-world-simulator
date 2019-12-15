@@ -12,6 +12,8 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
     private List<IAnimalObserver> observers = new ArrayList<>();
     private Genes genes;
     private int energy;
+    private List<Animal> children = new ArrayList<>();
+    private int lifeLength = 0;
 
     // CONSTRUCTORS
 
@@ -34,11 +36,25 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         return position;
     }
 
-    public Genes getGenes() { return genes; }
+    public Genes getGenes() {
+        return genes;
+    }
 
-    public int getEnergy() { return energy; }
+    public int getEnergy() {
+        return energy;
+    }
 
-    public MapDirection getOrientation() { return orientation; }
+    public MapDirection getOrientation() {
+        return orientation;
+    }
+
+    public List<Animal> getChildren() {
+        return children;
+    }
+
+    public int getLifeLength() {
+        return lifeLength;
+    }
 
     public void setMap(IWorldMap map) {
         this.map = map;
@@ -54,6 +70,7 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
     // ANIMAL'S PURPOSE OF LIFE
 
     public void move() {
+        lifeLength += 1;
         if (map == null) return;
 
         orientation = genes.getNextMove(orientation);
@@ -91,10 +108,11 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
     private Animal copulateWith(Animal animalToCopulate) {
         Point childPosition = position.add(MapDirection.getRandomDirection().toUnitVector());
         Genes childGenes = new Genes(genes, animalToCopulate.getGenes());
-        int childEnergy = energy/4 + animalToCopulate.getEnergy()/4;
+        int childEnergy = energy / 4 + animalToCopulate.getEnergy() / 4;
         Animal child = new Animal(childPosition, childGenes, childEnergy);
-        energy -= energy/4;
-        animalToCopulate.energy -= animalToCopulate.getEnergy()/4;
+        energy -= energy / 4;
+        animalToCopulate.energy -= animalToCopulate.getEnergy() / 4;
+        children.add(child);
         return child;
     }
 
@@ -117,7 +135,8 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
     }
 
     private void notifyObserversAnimalDied() {
-        for (IAnimalObserver observer : observers) {
+        List<IAnimalObserver> observersCopy = new ArrayList<>(observers);
+        for (IAnimalObserver observer : observersCopy) {
             observer.animalDied(this);
         }
     }
@@ -138,5 +157,4 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         Animal that = (Animal) other;
         return (position.equals(that.getPosition()) && energy == that.getEnergy() && orientation.equals(that.orientation));
     }
-
 }

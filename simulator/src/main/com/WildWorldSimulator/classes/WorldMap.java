@@ -1,10 +1,11 @@
 package com.WildWorldSimulator.classes;
 
-import com.WildWorldSimulator.constants.StartingParams;
+import com.WildWorldSimulator.constants.*;
 import com.WildWorldSimulator.interfaces.*;
 import com.WildWorldSimulator.util.MapVisualizer;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WorldMap implements IWorldMap {
     private Map<Point, Grass> grasses = new HashMap<>();
@@ -12,6 +13,8 @@ public class WorldMap implements IWorldMap {
     private StartingParams startingParams;
     private Point jungleLowerLeft;
     private Point jungleUpperRight;
+    private int deaths = 0;
+    private int lifeLengthSummary = 0;
 
     public WorldMap(StartingParams startingParams) {
         this.startingParams = startingParams;
@@ -65,16 +68,13 @@ public class WorldMap implements IWorldMap {
         moveAnimals();
     }
 
-    private void spawnGrass() {
+    public void spawnGrass() {
         GrassGenerator.plantGrass(this);
     }
 
     private void moveAnimals() {
-        for (List<Animal> animals : animals.values()) {
-            for (Animal animal : animals) {
-                animal.move();
-            }
-        }
+        List<Animal> animalsToRun = animals.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+        animalsToRun.forEach(Animal::move);
     }
 
     @Override
@@ -104,6 +104,8 @@ public class WorldMap implements IWorldMap {
 
     @Override
     public void animalDied(Animal animal) {
+        lifeLengthSummary += animal.getLifeLength();
+        deaths++;
         removeAnimalFromMap(animal);
         animal.removeObserver(this);
     }
@@ -134,5 +136,38 @@ public class WorldMap implements IWorldMap {
         return grasses;
     }
 
+    public Statistics getStatistics() {
+        List<Animal> animalsList = animals.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+        List<Grass> grassList = new ArrayList<>(grasses.values());
+        int[] genesFrequency = new int[startingParams.genesRange];
+        int animalCount = animalsList.size();
+        int grassCount = grassList.size();
+        double averageEnergy = 0;
+        double averageChildrenNum = 0;
+        double averageLifeLength = 0;
+        for (Animal animal : animalsList) {
+            averageEnergy += animal.getEnergy();
+            averageChildrenNum += animal.getChildren().size();
+            averageLifeLength += animal.getLifeLength();
+            int[] animalGenesfrequency = animal.getGenes().getGenesFrequency();
+            for (int i = 0; i < startingParams.genesRange; i++) {
+                genesFrequency[i] += animalGenesfrequency[i];
+            }
+        }
+        averageEnergy /= animalCount;
+        averageChildrenNum /= animalCount;
+        averageLifeLength = (averageLifeLength + lifeLengthSummary) / (animalCount + deaths);
 
+        return new Statistics(
+                animalsList,
+                grassList,
+                animalCount,
+                grassCount,
+                averageEnergy,
+                averageChildrenNum,
+                averageLifeLength,
+                genesFrequency.clone()
+        );
+
+    }
 }
