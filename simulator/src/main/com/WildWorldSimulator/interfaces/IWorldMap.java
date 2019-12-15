@@ -5,7 +5,6 @@ import com.WildWorldSimulator.constants.StartingParams;
 
 public interface IWorldMap extends IGrassMap, IAnimalMap, IAnimalObserver {
 
-    boolean place(Animal animal);
     boolean isOccupied(Point position);
     Object objectAt(Point position);
     void executeDay();

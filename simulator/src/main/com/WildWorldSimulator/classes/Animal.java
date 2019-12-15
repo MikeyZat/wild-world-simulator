@@ -47,6 +47,10 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         }
     }
 
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
     // ANIMAL'S PURPOSE OF LIFE
 
     public void move() {
@@ -70,13 +74,13 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         energy -= map.getStartingParams().everydayEnergyLoss;
 
         if (energy <= 0) {
-            notifyObserversAnimalDied(position);
+            notifyObserversAnimalDied();
             return;
         }
 
         Point oldPosition = position;
         position = newPosition;
-        notifyObserversPositionChanged(oldPosition, position);
+        notifyObserversPositionChanged(oldPosition);
     }
 
     public void eatGrass(Point position) {
@@ -106,15 +110,15 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         observers.remove(observer);
     }
 
-    private void notifyObserversPositionChanged(Point oldPosition, Point newPosition) {
+    private void notifyObserversPositionChanged(Point oldPosition) {
         for (IAnimalObserver observer : observers) {
-            observer.positionChanged(oldPosition, newPosition);
+            observer.positionChanged(this, oldPosition);
         }
     }
 
-    private void notifyObserversAnimalDied(Point position) {
+    private void notifyObserversAnimalDied() {
         for (IAnimalObserver observer : observers) {
-            observer.animalDied(position);
+            observer.animalDied(this);
         }
     }
 

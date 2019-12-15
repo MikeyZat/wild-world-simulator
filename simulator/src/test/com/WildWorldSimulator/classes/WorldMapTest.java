@@ -57,8 +57,8 @@ public class WorldMapTest {
     public void removeAnimalFromMap() {
         assertNotNull(map.animalAt(animal1.getPosition()));
         assertNotNull(map.animalAt(animal2.getPosition()));
-        assertEquals(animal1, map.removeAnimalFromMap(animal1.getPosition()));
-        assertEquals(animal2, map.removeAnimalFromMap(animal2.getPosition()));
+        assertEquals(animal1, map.removeAnimalFromMap(animal1));
+        assertEquals(animal2, map.removeAnimalFromMap(animal2));
         assertNull(map.animalAt(animal1.getPosition()));
         assertNull(map.animalAt(animal2.getPosition()));
         assertNull(map.objectAt(animal1.getPosition()));
@@ -84,23 +84,23 @@ public class WorldMapTest {
     @Test
     public void place() {
         Animal animal3 = new Animal(new Point(5,5), startingParams.startingEnergy);
-        Animal animal4 = new Animal(animal1.getPosition(), startingParams.startingEnergy);
-        assertTrue(map.place(animal3));
+        map.place(animal3);
         assertEquals(animal3, map.animalAt(animal3.getPosition()));
         assertEquals(animal3, map.objectAt(animal3.getPosition()));
-        assertFalse(map.place(animal4));
     }
 
     @Test
     public void positionChanged() {
-        map.positionChanged(animal1.getPosition(), animal1.getPosition().add(new Point(1,1)));
-        assertNull(map.animalAt(animal1.getPosition()));
-        assertEquals(animal1, map.animalAt(animal1.getPosition().add(new Point(1,1))));
+        Point oldPosition = animal1.getPosition();
+        animal1.setPosition(animal1.getPosition().add(new Point(1,1)));
+        map.positionChanged(animal1, oldPosition);
+        assertNull(map.animalAt(oldPosition));
+        assertEquals(animal1, map.animalAt(animal1.getPosition()));
     }
 
     @Test
     public void animalDied() {
-        map.animalDied(animal1.getPosition());
+        map.animalDied(animal1);
         assertNull(map.animalAt(animal1.getPosition()));
     }
 }
