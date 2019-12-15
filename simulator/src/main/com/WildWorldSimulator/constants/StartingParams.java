@@ -17,6 +17,7 @@ public class StartingParams {
     public final int grassEnergy;
     public final int numberOfAnimals;
     public final int numberOfGrass;
+    public final int everydayGrassGain;
 
     public StartingParams(
             int width,
@@ -30,7 +31,8 @@ public class StartingParams {
             int everydayEnergyLoss,
             int grassEnergy,
             int numberOfAnimals,
-            int numberOfGrass
+            int numberOfGrass,
+            int everydayGrassGain
     ) {
         this.lowerLeft = new Point(0, 0);
         this.upperRight = new Point(width-1, height-1);
@@ -46,5 +48,31 @@ public class StartingParams {
         this.grassEnergy = grassEnergy;
         this.numberOfAnimals = numberOfAnimals;
         this.numberOfGrass = numberOfGrass;
+        this.everydayGrassGain = everydayGrassGain;
+    }
+
+    public StartingParams(
+            int width,
+            int height,
+            int startingEnergy,
+            int everydayEnergyLoss,
+            int grassEnergy,
+            double jungleRatio
+    ) {
+        this(
+            width,
+            height,
+            (int)(width*jungleRatio),
+            (int)(height*jungleRatio),
+            32,
+            8,
+            startingEnergy/2,
+            startingEnergy,
+            everydayEnergyLoss,
+            grassEnergy,
+            10,
+            100,
+            2
+    );
     }
 }

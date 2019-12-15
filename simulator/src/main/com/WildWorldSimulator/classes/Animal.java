@@ -5,11 +5,11 @@ import com.WildWorldSimulator.interfaces.*;
 
 import java.util.*;
 
-public class Animal implements IMapObject, IPositionChangeSubject {
+public class Animal implements IMapObject, IAnimalObserverTarget {
     private Point position;
     private MapDirection orientation;
     private IWorldMap map;
-    private List<IPositionChangeObserver> observers = new ArrayList<>();
+    private List<IAnimalObserver> observers = new ArrayList<>();
     private Genes genes;
     private int energy;
 
@@ -97,23 +97,23 @@ public class Animal implements IMapObject, IPositionChangeSubject {
     // OBSERVER METHODS
 
     @Override
-    public void addObserver(IPositionChangeObserver observer) {
+    public void addObserver(IAnimalObserver observer) {
         observers.add(observer);
     }
 
     @Override
-    public void removeObserver(IPositionChangeObserver observer) {
+    public void removeObserver(IAnimalObserver observer) {
         observers.remove(observer);
     }
 
     private void notifyObserversPositionChanged(Point oldPosition, Point newPosition) {
-        for (IPositionChangeObserver observer : observers) {
+        for (IAnimalObserver observer : observers) {
             observer.positionChanged(oldPosition, newPosition);
         }
     }
 
     private void notifyObserversAnimalDied(Point position) {
-        for (IPositionChangeObserver observer : observers) {
+        for (IAnimalObserver observer : observers) {
             observer.animalDied(position);
         }
     }
@@ -123,6 +123,16 @@ public class Animal implements IMapObject, IPositionChangeSubject {
     @Override
     public String toString() {
         return orientation.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (!(other instanceof Animal))
+            return false;
+        Animal that = (Animal) other;
+        return (position.equals(that.getPosition()) && energy == that.getEnergy() && orientation.equals(that.orientation));
     }
 
 }

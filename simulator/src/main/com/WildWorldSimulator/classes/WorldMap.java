@@ -6,13 +6,19 @@ import com.WildWorldSimulator.util.MapVisualizer;
 
 import java.util.*;
 
-public class WorldMap implements IWorldMap, IPositionChangeObserver {
+public class WorldMap implements IWorldMap {
     private Map<Point, Grass> grasses = new HashMap<>();
     private Map<Point, Animal> animals = new HashMap<>();
     private StartingParams startingParams;
+    private Point jungleLowerLeft;
+    private Point jungleUpperRight;
 
     public WorldMap(StartingParams startingParams) {
         this.startingParams = startingParams;
+        int jungleStartX = startingParams.width / 2 - startingParams.jungleWidth / 2;
+        int jungleStartY = startingParams.height / 2 - startingParams.jungleHeight / 2;
+        jungleLowerLeft = startingParams.lowerLeft.add(new Point(jungleStartX, jungleStartY));
+        jungleUpperRight = jungleLowerLeft.add(new Point(startingParams.jungleWidth, startingParams.jungleHeight));
     }
 
 
@@ -58,7 +64,7 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
     }
 
     private void spawnGrass() {
-
+        GrassGenerator.plantGrass(this);
     }
 
     private void moveAnimals() {
@@ -109,5 +115,20 @@ public class WorldMap implements IWorldMap, IPositionChangeObserver {
     @Override
     public StartingParams getStartingParams() {
         return startingParams;
+    }
+
+    @Override
+    public Point getJungleLowerLeft() {
+        return jungleLowerLeft;
+    }
+
+    @Override
+    public Point getJungleUpperRight() {
+        return jungleUpperRight;
+    }
+
+    @Override
+    public Map<Point, Grass> getGrasses() {
+        return grasses;
     }
 }

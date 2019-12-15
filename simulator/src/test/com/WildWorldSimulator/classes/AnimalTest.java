@@ -24,7 +24,8 @@ public class AnimalTest {
             1,
             5,
             0,
-            0
+            0,
+            2
     );
     WorldMap map;
 

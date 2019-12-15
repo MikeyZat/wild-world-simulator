@@ -17,4 +17,14 @@ public class Grass implements IMapObject {
     public String toString() {
         return "*";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (!(other instanceof Grass))
+            return false;
+        Grass that = (Grass) other;
+        return (position.equals(that.getPosition()));
+    }
 }

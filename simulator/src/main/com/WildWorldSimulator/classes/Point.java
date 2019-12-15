@@ -1,5 +1,7 @@
 package com.WildWorldSimulator.classes;
 
+import java.util.Random;
+
 public class Point {
     public final int x;
     public final int y;
@@ -59,4 +61,12 @@ public class Point {
     public Point opposite() {
         return new Point(-x, -y);
     }
+
+    // rands points from lower and higher coordinates INCLUSIVE
+    public static Point getRandomPoint(int lowerX, int higherX, int lowerY, int higherY) {
+        Random randomGenerator = new Random();
+        int x = randomGenerator.nextInt(higherX + 1) + lowerX;
+        int y = randomGenerator.nextInt(higherY + 1) + lowerY;
+        return new Point(x,y);
+    };
 }
