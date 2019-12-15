@@ -1,0 +1,7 @@
+{
+  "width": 80,
+  "startEnergy": 200,
+  "moveEnergy": 2.5,
+  "plantEnergy": 40,
+  "height": "hello"
+}

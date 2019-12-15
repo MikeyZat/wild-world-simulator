@@ -5,31 +5,29 @@ import com.WildWorldSimulator.interfaces.*;
 
 import java.util.*;
 
-public class Animal implements IMapObject, IPositionChangeSubject, Comparable<Animal>{
+public class Animal implements IMapObject, IAnimalObserverTarget {
     private Point position;
     private MapDirection orientation;
     private IWorldMap map;
-    private List <IPositionChangeObserver> observers = new ArrayList<>();
+    private List<IAnimalObserver> observers = new ArrayList<>();
     private Genes genes;
     private int energy;
+    private List<Animal> children = new ArrayList<>();
+    private int lifeLength = 0;
 
     // CONSTRUCTORS
 
-    public Animal(int x, int y) {
-        position = new Point(x, y);
-        orientation = MapDirection.getRandomDirection();
-    }
-
-    public Animal(Point startingPoint) {
+    public Animal(Point startingPoint, int startEnergy) {
         position = startingPoint;
         orientation = MapDirection.getRandomDirection();
-        genes = new Genes();
+        energy = startEnergy;
     }
 
-    public Animal(Point startingPoint, Genes newGenes) {
+    public Animal(Point startingPoint, Genes newGenes, int startEnergy) {
         position = startingPoint;
         orientation = MapDirection.getRandomDirection();
         genes = newGenes;
+        energy = startEnergy;
     }
 
     // GETTERS & SETTERS
@@ -38,81 +36,125 @@ public class Animal implements IMapObject, IPositionChangeSubject, Comparable<An
         return position;
     }
 
+    public Genes getGenes() {
+        return genes;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public MapDirection getOrientation() {
+        return orientation;
+    }
+
+    public List<Animal> getChildren() {
+        return children;
+    }
+
+    public int getLifeLength() {
+        return lifeLength;
+    }
+
     public void setMap(IWorldMap map) {
         this.map = map;
+        if (genes == null) {
+            genes = new Genes(map.getStartingParams().genesLength, map.getStartingParams().genesRange);
+        }
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
     // ANIMAL'S PURPOSE OF LIFE
 
     public void move() {
-        orientation = genes.getNextMove();
+        lifeLength += 1;
+        if (map == null) return;
+
+        orientation = genes.getNextMove(orientation);
         Point newPosition = position.add(orientation.toUnitVector());
-        if (map != null){
-            int mapSize = map.getSize();
-            newPosition = new Point(newPosition.x % mapSize, newPosition.y % mapSize );
-            Animal animalToCopulate = map.animalAt(newPosition);
-            Grass grassOnNextField = map.grassAt(newPosition);
-            if (animalToCopulate != null) {
-                copulateWith(animalToCopulate);
-            } else if (grassOnNextField != null) {
-                eatGrass(newPosition);
+        int mapWidth = map.getStartingParams().width;
+        int mapHeight = map.getStartingParams().height;
+        newPosition = new Point(newPosition.x % mapWidth, newPosition.y % mapHeight);
+        Animal animalToCopulate = map.animalAt(newPosition);
+        Grass grassOnNextField = map.grassAt(newPosition);
+        if (animalToCopulate != null) {
+            int minimumEnergy = map.getStartingParams().minimumEnergyToCopulate;
+            if (this.energy > minimumEnergy && animalToCopulate.energy > minimumEnergy) {
+                map.place(copulateWith(animalToCopulate));
             }
+        } else if (grassOnNextField != null) {
+            eatGrass(newPosition);
         }
-        energy -= 1;
+        energy -= map.getStartingParams().everydayEnergyLoss;
+
         if (energy <= 0) {
-            notifyObserversAnimalDied(position);
+            notifyObserversAnimalDied();
             return;
         }
 
         Point oldPosition = position;
         position = newPosition;
-        notifyObserversPositionChanged(oldPosition, position);
+        notifyObserversPositionChanged(oldPosition);
     }
 
-    public void eatGrass(Point position){
-        energy += 10;
+    public void eatGrass(Point position) {
+        energy += map.getStartingParams().grassEnergy;
         map.removeGrassFromMap(position);
     }
 
-    private void copulateWith(Animal animalToCopulate) {
-
+    private Animal copulateWith(Animal animalToCopulate) {
+        Point childPosition = position.add(MapDirection.getRandomDirection().toUnitVector());
+        Genes childGenes = new Genes(genes, animalToCopulate.getGenes());
+        int childEnergy = energy / 4 + animalToCopulate.getEnergy() / 4;
+        Animal child = new Animal(childPosition, childGenes, childEnergy);
+        energy -= energy / 4;
+        animalToCopulate.energy -= animalToCopulate.getEnergy() / 4;
+        children.add(child);
+        return child;
     }
 
     // OBSERVER METHODS
 
     @Override
-    public void addObserver(IPositionChangeObserver observer) {
+    public void addObserver(IAnimalObserver observer) {
         observers.add(observer);
     }
 
     @Override
-    public void removeObserver(IPositionChangeObserver observer) {
+    public void removeObserver(IAnimalObserver observer) {
         observers.remove(observer);
     }
 
-    private void notifyObserversPositionChanged( Point oldPosition, Point newPosition ){
-        for (IPositionChangeObserver observer : observers){
-            observer.positionChanged(oldPosition, newPosition);
+    private void notifyObserversPositionChanged(Point oldPosition) {
+        for (IAnimalObserver observer : observers) {
+            observer.positionChanged(this, oldPosition);
         }
     }
 
-    private void notifyObserversAnimalDied(Point position) {
-        for (IPositionChangeObserver observer : observers){
-            observer.animalDied(position);
+    private void notifyObserversAnimalDied() {
+        List<IAnimalObserver> observersCopy = new ArrayList<>(observers);
+        for (IAnimalObserver observer : observersCopy) {
+            observer.animalDied(this);
         }
     }
 
     // UTILS
 
     @Override
-    public int compareTo(Animal o) {
-        return position.x - o.getPosition().x;
-    }
-
-
-    @Override
     public String toString() {
         return orientation.toString();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (!(other instanceof Animal))
+            return false;
+        Animal that = (Animal) other;
+        return (position.equals(that.getPosition()) && energy == that.getEnergy() && orientation.equals(that.orientation));
+    }
 }
