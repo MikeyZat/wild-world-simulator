@@ -1,7 +1,10 @@
 package com.WildWorldSimulator.classes;
 
 import com.WildWorldSimulator.interfaces.IMapObject;
+import com.WildWorldSimulator.util.GrassSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonSerialize(using = GrassSerializer.class)
 public class Grass implements IMapObject {
     private Point position;
 

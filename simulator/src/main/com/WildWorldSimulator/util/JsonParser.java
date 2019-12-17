@@ -1,13 +1,20 @@
 package com.WildWorldSimulator.util;
 import com.WildWorldSimulator.constants.Statistics;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.WildWorldSimulator.constants.StartingParams;
@@ -40,6 +47,15 @@ public class JsonParser {
     }
 
     public static void writeStatsToJson(List<Statistics> stats, String fileName) {
-        JSONArray statsAsJson = new JSONArray();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        String json = null;
+        try {
+            ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+            writer.writeValue(new File("../results.json"), stats);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
