@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d436a96-c9bb-41e2-b5d6-f086b2192587" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Genes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Genes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/WorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/WorldMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/constants/StartingParams.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/constants/StartingParams.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/util/JsonParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/util/JsonParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Genes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Genes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/WorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/constants/StartingParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/constants/StartingParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/constants/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/constants/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/JsonParser.java" afterDir="false" />
-    </list>
+    <list default="true" id="4d436a96-c9bb-41e2-b5d6-f086b2192587" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,6 +183,7 @@
       <workItem from="1576358164860" duration="3822000" />
       <workItem from="1576405892722" duration="6988000" />
       <workItem from="1576434206671" duration="9394000" />
+      <workItem from="1576615311134" duration="50000" />
     </task>
     <servers />
   </component>

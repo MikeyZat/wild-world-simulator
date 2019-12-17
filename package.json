@@ -1,0 +1,21 @@
+{
+	"name": "wild-world-manager",
+	"version": "1.0.0",
+	"description": "Starter kit for wild world simulation",
+	"main": "index.js",
+	"scripts": {
+		"visualisation-install": "cd visualisation && npm install",
+		"start": "node server.js",
+		"server": "nodemon server.js",
+		"visualisation": "npm start --prefix visualisation",
+		"dev": "concurrently \"npm run server\" \"npm run visualisation\""
+	},
+	"author": "Mikolaj Zatorski",
+	"license": "MIT",
+	"devDependencies": {
+		"nodemon": "^1.14.6"
+	},
+	"dependencies": {
+		"concurrently": "^3.5.1"
+	}
+}
