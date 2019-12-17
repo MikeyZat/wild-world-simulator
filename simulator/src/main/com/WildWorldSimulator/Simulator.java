@@ -32,15 +32,15 @@ public class Simulator {
             }
             // run simulation
             List <Statistics> statistics = new ArrayList<>();
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 1000; i++) {
                 worldMap.executeDay();
                 Statistics dailyStats = worldMap.getStatistics();
                 statistics.add(dailyStats);
-                System.out.println("day " + i);  // UNCOMMENT TO SEE STATS IN THE CONSOLE
-                dailyStats.printStatistic();
+//                System.out.println("day " + i);  // UNCOMMENT TO SEE STATS IN THE CONSOLE
+//                dailyStats.printStatistic();
             }
 
-            JsonParser.writeStatsToJson(statistics, "../simulationResults.json");
+//            JsonParser.writeStatsToJson(statistics, "../simulationResults.json"); //UNCOMMENT THIS TO SAVE SIMULATION DATA IN JSON
         } catch (JsonParserException e) {
             System.out.println("Reading starting params from JSON file failed");
         }
