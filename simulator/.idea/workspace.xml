@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d436a96-c9bb-41e2-b5d6-f086b2192587" name="Default Changelist" comment="" />
+
+    <list default="true" id="4d436a96-c9bb-41e2-b5d6-f086b2192587" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/AnimalSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/GrassSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/wild-world-simulator.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/Simulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/Simulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Grass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Grass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/util/JsonParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/util/JsonParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/simulator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/Simulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Grass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/JsonParser.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,10 +62,10 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$/lib" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/json-simple-1.1.1.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -69,7 +88,7 @@
       <recent name="D:\programy\projects\wild-world-simulator\simulator\testJsons" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in simulator">
+  <component name="RunManager" selected="Application.Simulator">
     <configuration name="Simulator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.WildWorldSimulator.Simulator" />
       <module name="simulator" />
@@ -141,8 +160,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in simulator" />
         <item itemvalue="Application.Simulator" />
+        <item itemvalue="JUnit.All in simulator" />
         <item itemvalue="JUnit.WorldMapTest.place" />
         <item itemvalue="JUnit.WorldMapTest.animalDied" />
         <item itemvalue="JUnit.WorldMapTest.positionChanged" />
@@ -182,8 +201,11 @@
       <workItem from="1576336953919" duration="11156000" />
       <workItem from="1576358164860" duration="3822000" />
       <workItem from="1576405892722" duration="6988000" />
-      <workItem from="1576434206671" duration="9394000" />
-      <workItem from="1576615311134" duration="50000" />
+      <workItem from="1576434206671" duration="9394000" /
+      <workItem from="1576611088774" duration="230000" />
+      <workItem from="1576611344165" duration="75000" />
+      <workItem from="1576611439133" duration="3316000" />
+      <workItem from="1576614813791" duration="98000" />
     </task>
     <servers />
   </component>
@@ -216,26 +238,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576348061215" />
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1576443614916">
+    <state width="1493" height="263" key="GridCell.Tab.0.bottom" timestamp="1576614757292">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="123" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576412895229" />
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576443614916" />
-    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1576443614915">
+    <state width="1493" height="263" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576614757292" />
+    <state width="1493" height="263" key="GridCell.Tab.0.center" timestamp="1576614757292">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="123" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576412895229" />
-    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576443614915" />
-    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1576443614915">
+    <state width="1493" height="263" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576614757292" />
+    <state width="1493" height="263" key="GridCell.Tab.0.left" timestamp="1576614757292">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="123" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576412895229" />
-    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576443614915" />
-    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1576443614915">
+    <state width="1493" height="263" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576614757292" />
+    <state width="1493" height="263" key="GridCell.Tab.0.right" timestamp="1576614757292">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="123" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576412895229" />
-    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576443614915" />
+    <state width="1493" height="263" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576614757292" />
     <state width="1493" height="311" key="GridCell.Tab.1.bottom" timestamp="1576348539773">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -252,19 +274,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="311" key="GridCell.Tab.1.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576348539773" />
-    <state x="118" y="0" key="SettingsEditor" timestamp="1576348091762">
+    <state x="118" y="0" key="SettingsEditor" timestamp="1576611374125">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="118" y="0" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576348091762" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1576434212551">
+    <state x="118" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1576611374125" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1576614816363">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576405906875" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1576434212551" />
-    <state x="367" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1576347611428">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1576614816363" />
+    <state x="367" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1576611214080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="367" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576347611428" />
+    <state x="367" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1576611214080" />
     <state x="540" y="88" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1576410949536">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

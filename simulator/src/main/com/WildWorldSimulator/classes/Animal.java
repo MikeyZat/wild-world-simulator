@@ -2,9 +2,12 @@ package com.WildWorldSimulator.classes;
 
 import com.WildWorldSimulator.constants.*;
 import com.WildWorldSimulator.interfaces.*;
+import com.WildWorldSimulator.util.AnimalSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.*;
 
+@JsonSerialize(using = AnimalSerializer.class)
 public class Animal implements IMapObject, IAnimalObserverTarget {
     private Point position;
     private MapDirection orientation;
@@ -107,6 +110,9 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
 
     private Animal copulateWith(Animal animalToCopulate) {
         Point childPosition = position.add(MapDirection.getRandomDirection().toUnitVector());
+        int mapWidth = map.getStartingParams().width;
+        int mapHeight = map.getStartingParams().height;
+        Point formattedPosition = new Point(childPosition.x % mapWidth, childPosition.y % mapHeight);
         Genes childGenes = new Genes(genes, animalToCopulate.getGenes());
         int childEnergy = energy / 4 + animalToCopulate.getEnergy() / 4;
         Animal child = new Animal(childPosition, childGenes, childEnergy);
