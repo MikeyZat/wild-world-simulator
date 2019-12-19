@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Layout, Typography, Breadcrumb, Steps, PageHeader, Tooltip, Icon } from 'antd';
 import WelcomeModal from './components/welcomeModal/WelcomeModal';
 import SetUp from './components/setUp/SetUp';
+import Simulation from './components/simulation/Simulation';
 import './globalStyles.css';
 
 const { Header, Content, Footer } = Layout;
@@ -9,7 +10,7 @@ const { Step } = Steps;
 const { Title, Text } = Typography;
 
 export const SETUP = 0;
-export const LOADING = 1;
+export const SIMULATION = 1;
 export const VISUALISATION = 2;
 
 const tabsDetails = [
@@ -17,41 +18,28 @@ const tabsDetails = [
 		breadcrumb: 'Setup',
 		progressTitle: 'Set up',
 		title: 'Provide starting data for simulation',
-		infoTooltip: (
-			<Tooltip
-				title={`Starting data are loaded from parameters.json.
-			Your changes will be also saved to that file as it is the simulation main config file.`}
-			>
-				<Icon type="question-circle" style={{ cursor: 'pointer' }} />
-			</Tooltip>
-		),
+		tooltipInfo: `Starting data are loaded from parameters.json.
+			Your changes will be also saved to that file as it is the simulation main config file.`,
 	},
 	{
-		breadcrumb: 'Loading',
+		breadcrumb: 'Simulation',
 		progressTitle: 'Simulate',
 		activeProgressIcon: <Icon type="loading" />,
 		title: 'Wait untill simulation is finished',
-		infoTooltip: (
-			<Tooltip title="Simulation is running. It should last a few seconds. Do not refresh this page!">
-				<Icon type="question-circle" />
-			</Tooltip>
-		),
+		tooltipInfo: 'Simulation is running. It should last a few seconds. Do not refresh this page!',
 	},
 	{
 		breadcrumb: 'Visualisation',
 		progressTitle: 'Visualize',
 		title: 'Enjoy visualisation',
-		infoTooltip: (
-			<Tooltip title="Run visualisation by hitting the 'Run visualisation' button.">
-				<Icon type="question-circle" />
-			</Tooltip>
-		),
+		tooltipInfo: "Run visualisation by hitting the 'Run visualisation' button.",
 	},
 ];
 
 const App = () => {
 	const [currentTab, setCurrentTab] = useState(SETUP);
 	const [showModal, setShowModal] = useState(true);
+	const [isSimulationRunning, setSimulationRunning] = useState(false);
 
 	const currentTabDetails = tabsDetails[currentTab];
 
@@ -74,7 +62,7 @@ const App = () => {
 							<Step
 								key={tab.progressTitle}
 								title={tab.progressTitle}
-								icon={currentTab === index && tab.activeProgressIcon ? tab.activeProgressIcon : ''}
+								icon={isSimulationRunning && tab.activeProgressIcon ? tab.activeProgressIcon : ''}
 							/>
 						))}
 					</Steps>
@@ -84,9 +72,19 @@ const App = () => {
 							margin: '20px 0',
 						}}
 						title={currentTabDetails.title}
-						subTitle={currentTabDetails.infoTooltip}
+						subTitle={
+							<Tooltip title={currentTabDetails.tooltipInfo}>
+								<Icon type="question-circle" style={{ cursor: 'pointer' }} />
+							</Tooltip>
+						}
 					/>
-					{currentTab === SETUP && <SetUp />}
+					{currentTab === SETUP && <SetUp goToSimulation={() => setCurrentTab(SIMULATION)} />}
+					{currentTab === SIMULATION && (
+						<Simulation
+							goToVisualisation={() => setCurrentTab(VISUALISATION)}
+							setSimulationRunning={setSimulationRunning}
+						/>
+					)}
 				</div>
 				<WelcomeModal isModalVisible={showModal} closeModal={() => setShowModal(false)} />
 			</Content>

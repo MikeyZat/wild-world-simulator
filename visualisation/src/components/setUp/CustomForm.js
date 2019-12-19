@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, InputNumber, Row, Col, Button } from 'antd';
 
 const CustomForm = (props) => {
-	const { jsonData } = props;
+	const { jsonData, onSubmit } = props;
 
 	const [width, setWidth] = useState(jsonData.width);
 	const [height, setHeight] = useState(jsonData.height);
@@ -13,6 +13,7 @@ const CustomForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		onSubmit();
 	};
 
 	const formItemLayout = {

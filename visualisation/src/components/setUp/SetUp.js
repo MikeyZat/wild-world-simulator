@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CustomForm from './CustomForm';
 import CustomFormSkeleton from './CustomFormSkeleton';
 
-const SetUp = () => {
+const SetUp = (props) => {
+	const { goToSimulation } = props;
 	const [isLoading, setIsLoading] = useState(true);
 
 	const mockJson = {
@@ -13,7 +14,11 @@ const SetUp = () => {
 		plantEnergy: 40,
 		jungleRatio: 0.2,
 	};
-	return isLoading ? <CustomFormSkeleton /> : <CustomForm jsonData={mockJson} />;
+	setTimeout(() => setIsLoading(false), 1000);
+
+	const handleSubmit = (data) => goToSimulation();
+
+	return isLoading ? <CustomFormSkeleton /> : <CustomForm jsonData={mockJson} onSubmit={handleSubmit} />;
 };
 
 export default SetUp;
