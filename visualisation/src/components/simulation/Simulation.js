@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Spin, Row, Col, notification, Result, Button } from 'antd';
+import axios from 'axios';
 
 const Loader = () => (
 	<Row type="flex" justify="center" align="center" style={{ height: 300 }}>
@@ -26,20 +27,22 @@ const Simulation = (props) => {
 	const { goToVisualisation, setSimulationRunning } = props;
 	const [isLoading, setIsLoading] = useState(true);
 
-	setTimeout(() => {
-		setIsLoading(false);
-		setSimulationRunning(false);
-	}, 1000);
-
 	useEffect(() => {
-		if (isLoading) {
-			notification.warning({
-				message: 'Simulation is running',
-				description: 'Do not refresh this page!',
-				duration: 5,
-			});
-			setSimulationRunning(true);
-		}
+		notification.warning({
+			message: 'Simulation is running',
+			description: 'Do not refresh this page!',
+			duration: 6,
+		});
+		setSimulationRunning(true);
+
+		const interval = setInterval(async () => {
+			const res = await axios.get('/isSimulationFinished');
+			if (res.data.finished) {
+				setSimulationRunning(false);
+				setIsLoading(false);
+			}
+		}, 3000);
+		return () => clearInterval(interval);
 	}, []);
 
 	return isLoading ? <Loader /> : <SuccessScreen onClick={goToVisualisation} />;

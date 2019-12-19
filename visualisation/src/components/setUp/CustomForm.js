@@ -13,7 +13,14 @@ const CustomForm = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		onSubmit();
+		onSubmit({
+			width,
+			height,
+			startEnergy,
+			moveEnergy,
+			plantEnergy,
+			jungleRatio,
+		});
 	};
 
 	const formItemLayout = {

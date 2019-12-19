@@ -1,24 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { message } from 'antd';
 import CustomForm from './CustomForm';
 import CustomFormSkeleton from './CustomFormSkeleton';
 
 const SetUp = (props) => {
 	const { goToSimulation } = props;
 	const [isLoading, setIsLoading] = useState(true);
+	const [jsonData, setJsonData] = useState({});
 
-	const mockJson = {
-		width: 100,
-		height: 100,
-		startEnergy: 200,
-		moveEnergy: 1,
-		plantEnergy: 40,
-		jungleRatio: 0.2,
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const res = await axios.get('/parameters');
+				setJsonData(res.data);
+			} catch (e) {
+				message.error('Failed to fetch initial data from parameters.json');
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		fetchData();
+	}, []);
+
+	const handleSubmit = async (data) => {
+		console.log(data);
+		try {
+			await axios.post('/runSimulation', data);
+			goToSimulation();
+		} catch (e) {}
 	};
-	setTimeout(() => setIsLoading(false), 1000);
 
-	const handleSubmit = (data) => goToSimulation();
-
-	return isLoading ? <CustomFormSkeleton /> : <CustomForm jsonData={mockJson} onSubmit={handleSubmit} />;
+	return isLoading ? <CustomFormSkeleton /> : <CustomForm jsonData={jsonData} onSubmit={handleSubmit} />;
 };
 
 export default SetUp;

@@ -1,5 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const WelcomePage = () => <div>Hello world</div>;
+const Dashboard = () => {
+	const [time, setTime] = useState();
 
-export default WelcomePage;
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await axios.fetchData('/getSimulation');
+			const { data } = res;
+			console.log(data);
+		};
+	}, []);
+
+	return <div>Hello world</div>;
+};
+
+export default Dashboard;

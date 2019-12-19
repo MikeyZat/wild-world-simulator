@@ -3,6 +3,8 @@ import { Layout, Typography, Breadcrumb, Steps, PageHeader, Tooltip, Icon } from
 import WelcomeModal from './components/welcomeModal/WelcomeModal';
 import SetUp from './components/setUp/SetUp';
 import Simulation from './components/simulation/Simulation';
+import Dashboard from './components/visualisation/Dashboard';
+
 import './globalStyles.css';
 
 const { Header, Content, Footer } = Layout;
@@ -85,6 +87,7 @@ const App = () => {
 							setSimulationRunning={setSimulationRunning}
 						/>
 					)}
+					{currentTab === VISUALISATION && <Dashboard />}
 				</div>
 				<WelcomeModal isModalVisible={showModal} closeModal={() => setShowModal(false)} />
 			</Content>
