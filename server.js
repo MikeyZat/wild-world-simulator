@@ -39,7 +39,7 @@ app.get('/isSimulationFinished', (req, res) => {
 	res.send({ finished: true }).status(200);
 });
 
-app.get('/getSimulation', (req, res) => {
+app.get('/simulation', (req, res) => {
 	const rawUsersData = fs.readFileSync('./results.json');
 	res.send(JSON.parse(rawUsersData)).status(200);
 });
