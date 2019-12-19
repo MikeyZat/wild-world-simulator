@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Spin, Row, Col, notification, Result, Button } from 'antd';
+import { notification, Result, Button, message } from 'antd';
 import axios from 'axios';
+import Loader from '../Loader';
 
-const Loader = () => (
-	<Row type="flex" justify="center" align="center" style={{ height: 300 }}>
-		<Col span={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-			<Spin size="large" />
-		</Col>
-	</Row>
-);
 
 const SuccessScreen = ({ onClick }) => (
 	<Result
@@ -40,12 +34,13 @@ const Simulation = (props) => {
 			if (res.data.finished) {
 				setSimulationRunning(false);
 				setIsLoading(false);
+				message.success('Simulation finished!')
 			}
 		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
 
-	return isLoading ? <Loader /> : <SuccessScreen onClick={goToVisualisation} />;
+	return isLoading ? <Loader height={300} /> : <SuccessScreen onClick={goToVisualisation} />;
 };
 
 export default Simulation;

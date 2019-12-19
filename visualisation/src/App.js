@@ -39,7 +39,7 @@ const tabsDetails = [
 ];
 
 const App = () => {
-	const [currentTab, setCurrentTab] = useState(SETUP);
+	const [currentTab, setCurrentTab] = useState(VISUALISATION);
 	const [showModal, setShowModal] = useState(true);
 	const [isSimulationRunning, setSimulationRunning] = useState(false);
 

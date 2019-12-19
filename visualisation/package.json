@@ -12,6 +12,7 @@
 		"react": "^16.12.0",
 		"react-app-rewired": "^2.1.5",
 		"react-dom": "^16.12.0",
+		"react-dynamic-charts": "^1.0.5",
 		"react-scripts": "3.3.0"
 	},
 	"scripts": {
