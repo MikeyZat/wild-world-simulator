@@ -15,6 +15,7 @@
 #### Running steps:
 - in the console type:
     - `git clone https://github.com/MikeyZat/wild-world-simulator.git`
+    - `cd wild-world-simulator`
     - `npm install`
     - `npm visualisation-install`
     - `npm run visualisation`
