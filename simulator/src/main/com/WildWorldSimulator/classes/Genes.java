@@ -41,12 +41,16 @@ public class Genes {
         }
 
         int maxSeparation = Math.max(firstSeparation, secondSeparation);
+        int minSeparation = Math.min(firstSeparation, secondSeparation);
 
-        for (int i=0; i<maxSeparation; i++) {
+        for (int i=0; i<minSeparation; i++) {
             genesArray[i] = firstGenes.getGenesArray()[i];
         }
-        for (int i=maxSeparation; i<length; i++) {
+        for (int i=minSeparation; i<maxSeparation; i++) {
             genesArray[i] = secondGenes.getGenesArray()[i];
+        }
+        for (int i=maxSeparation; i<length; i++) {
+            genesArray[i] = firstGenes.getGenesArray()[i];
         }
         fixGenes();
     }
