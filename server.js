@@ -20,23 +20,12 @@ app.post('/runSimulation', (req, res) => {
 	} catch (e) {
 		console.log(e);
 	}
-	exec('ls -al', (err, stdout, stderr) => {
-		if (err) {
-			// node couldn't execute the command
-			console.log(err);
-			return;
-		}
-
-		// the *entire* stdout and stderr (buffered)
-		console.log(`stdout: ${stdout}`);
-		console.log(`stderr: ${stderr}`);
-	});
 	res.send(req.body).status(200);
 });
 
 app.get('/isSimulationFinished', (req, res) => {
 	const finished = fs.existsSync('./results.json');
-	res.send({ finished: true }).status(200);
+	res.send({ finished }).status(200);
 });
 
 app.get('/simulation', (req, res) => {

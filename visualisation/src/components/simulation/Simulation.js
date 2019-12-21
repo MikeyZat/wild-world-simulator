@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { notification, Result, Button, message } from 'antd';
 import axios from 'axios';
-import Loader from '../Loader';
-
 
 const SuccessScreen = ({ onClick }) => (
 	<Result
@@ -22,10 +20,10 @@ const Simulation = (props) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		notification.warning({
-			message: 'Simulation is running',
-			description: 'Do not refresh this page!',
-			duration: 6,
+		notification.info({
+			message: ':((',
+			description: 'I tried to run this java app from Node JS (using terminal) but after numerous hours I failed.',
+			duration: 10,
 		});
 		setSimulationRunning(true);
 
@@ -34,13 +32,18 @@ const Simulation = (props) => {
 			if (res.data.finished) {
 				setSimulationRunning(false);
 				setIsLoading(false);
-				message.success('Simulation finished!')
+				message.success('Simulation finished!');
+				clearInterval(interval);
 			}
 		}, 3000);
-		return () => clearInterval(interval);
+		return () => interval && clearInterval(interval);
 	}, []);
 
-	return isLoading ? <Loader height={300} /> : <SuccessScreen onClick={goToVisualisation} />;
+	return isLoading ? (
+		<Result title="Go to the javaSimulator directory and run Simulator.java main function" />
+	) : (
+		<SuccessScreen onClick={goToVisualisation} />
+	);
 };
 
 export default Simulation;
