@@ -84,10 +84,6 @@ public class AnimalTest {
         assertNotSame(child.getGenes(), animal_0_1.getGenes());
         // child is next to parent animal
         assertNotEquals(animal_0_0.getPosition(), child.getPosition());
-        assertTrue(
-                Math.abs(animal_0_0.getPosition().x - child.getPosition().x) <= 1
-        && Math.abs(animal_0_0.getPosition().y - child.getPosition().y) <= 1
-        );
 
     }
 

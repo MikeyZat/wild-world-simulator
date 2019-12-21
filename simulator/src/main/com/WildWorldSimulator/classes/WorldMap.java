@@ -4,6 +4,7 @@ import com.WildWorldSimulator.constants.*;
 import com.WildWorldSimulator.interfaces.*;
 import com.WildWorldSimulator.util.MapVisualizer;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class WorldMap implements IWorldMap {
         int jungleStartX = startingParams.width / 2 - startingParams.jungleWidth / 2;
         int jungleStartY = startingParams.height / 2 - startingParams.jungleHeight / 2;
         jungleLowerLeft = startingParams.lowerLeft.add(new Point(jungleStartX, jungleStartY));
-        jungleUpperRight = jungleLowerLeft.add(new Point(startingParams.jungleWidth-1, startingParams.jungleHeight-1));
+        jungleUpperRight = jungleLowerLeft.add(new Point(startingParams.jungleWidth - 1, startingParams.jungleHeight - 1));
     }
 
 
@@ -145,6 +146,7 @@ public class WorldMap implements IWorldMap {
         double averageEnergy = 0;
         double averageChildrenNum = 0;
         double averageLifeLength;
+        Map<List<Integer>, Integer> genesMap = new HashMap<>();
         for (Animal animal : animalsList) {
             averageEnergy += animal.getEnergy();
             averageChildrenNum += animal.getChildren().size();
@@ -152,10 +154,25 @@ public class WorldMap implements IWorldMap {
             for (int i = 0; i < startingParams.genesRange; i++) {
                 genesFrequency[i] += animalGenesfrequency[i];
             }
+            List<Integer> genesAsArray = Arrays.stream(animal.getGenes().getGenesArray()).boxed().collect(Collectors.toList());
+            if (genesMap.containsKey(genesAsArray)) {
+                Integer prev = genesMap.get(genesAsArray);
+                genesMap.put(genesAsArray, prev + 1);
+            } else {
+                genesMap.put(genesAsArray, 1);
+            }
         }
-        averageEnergy = animalCount > 0 ? averageEnergy/animalCount : 0;
-        averageChildrenNum = animalCount > 0 ? averageChildrenNum/animalCount : 0;
-        averageLifeLength = deaths > 0 ? (double) lifeLengthSummary/deaths : 0;
+        averageEnergy = animalCount > 0 ? averageEnergy / animalCount : 0;
+        averageChildrenNum = animalCount > 0 ? averageChildrenNum / animalCount : 0;
+        averageLifeLength = deaths > 0 ? (double) lifeLengthSummary / deaths : 0;
+        int maxFrequency = 0;
+        List <Integer> mostFrequentGenes = new ArrayList<>();
+        for (Map.Entry<List<Integer>, Integer> entry : genesMap.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                mostFrequentGenes = entry.getKey();
+                maxFrequency = entry.getValue();
+            }
+        }
 
         return new Statistics(
                 startingParams,
@@ -167,7 +184,7 @@ public class WorldMap implements IWorldMap {
                 averageChildrenNum,
                 averageLifeLength,
                 genesFrequency.clone(),
-                new int[]{}
+                mostFrequentGenes
         );
 
     }

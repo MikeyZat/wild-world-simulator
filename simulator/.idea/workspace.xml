@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d436a96-c9bb-41e2-b5d6-f086b2192587" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/../parameters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../results.json" beforeDir="false" afterPath="$PROJECT_DIR$/../results.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/Simulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/Simulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Grass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/Grass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/WorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/classes/WorldMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/constants/Statistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/constants/Statistics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/util/AnimalSerializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/simulator/com/WildWorldSimulator/util/GrassSerializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/classes/WorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/constants/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/constants/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/AnimalSerializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/WildWorldSimulator/util/GrassSerializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visualisation/src/components/Loader.js" beforeDir="false" afterPath="$PROJECT_DIR$/../visualisation/src/components/Loader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visualisation/src/components/setUp/CustomForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../visualisation/src/components/setUp/CustomForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visualisation/src/components/visualisation/CustomDataTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/../visualisation/src/components/visualisation/CustomDataTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visualisation/src/components/visualisation/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../visualisation/src/components/visualisation/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visualisation/src/util/visualisationShaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/../visualisation/src/util/visualisationShaper.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +33,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -69,10 +49,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -214,6 +194,7 @@
       <workItem from="1576926094369" duration="1191000" />
       <workItem from="1576927640446" duration="5448000" />
       <workItem from="1576938094981" duration="545000" />
+      <workItem from="1576943225226" duration="5516000" />
     </task>
     <servers />
   </component>
@@ -250,25 +231,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576348061215" />
-    <state width="1493" height="245" key="GridCell.Tab.0.bottom" timestamp="1576938647016">
+    <state width="1493" height="197" key="GridCell.Tab.0.bottom" timestamp="1576948912200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="245" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576938647016" />
+    <state width="1493" height="197" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576948912200" />
     <state width="1493" height="263" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1576760583403" />
-    <state width="1493" height="245" key="GridCell.Tab.0.center" timestamp="1576938647016">
+    <state width="1493" height="197" key="GridCell.Tab.0.center" timestamp="1576948912200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="245" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576938647016" />
+    <state width="1493" height="197" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576948912200" />
     <state width="1493" height="263" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1576760583403" />
-    <state width="1493" height="245" key="GridCell.Tab.0.left" timestamp="1576938647016">
+    <state width="1493" height="197" key="GridCell.Tab.0.left" timestamp="1576948912200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="245" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576938647016" />
+    <state width="1493" height="197" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576948912200" />
     <state width="1493" height="263" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1576760583403" />
-    <state width="1493" height="245" key="GridCell.Tab.0.right" timestamp="1576938647016">
+    <state width="1493" height="197" key="GridCell.Tab.0.right" timestamp="1576948912200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="245" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576938647016" />
+    <state width="1493" height="197" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576948912200" />
     <state width="1493" height="263" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1576760583403" />
     <state width="1493" height="311" key="GridCell.Tab.1.bottom" timestamp="1576348539773">
       <screen x="0" y="0" width="1536" height="824" />
@@ -302,15 +283,15 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="746" height="132" key="GridCell.Tab.2.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576926985023" />
-    <state x="118" y="0" key="SettingsEditor" timestamp="1576611374125">
+    <state x="118" y="0" key="SettingsEditor" timestamp="1576945399764">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="118" y="0" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576348091762" />
+    <state x="118" y="0" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576945399764" />
     <state x="118" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1576611374125" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1576938145283">
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1576943241511">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576938145283" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1576943241511" />
     <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1576614816363" />
     <state x="367" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1576611214080">
       <screen x="0" y="0" width="1536" height="824" />
