@@ -17,7 +17,7 @@
     - `git clone https://github.com/MikeyZat/wild-world-simulator.git`
     - `cd wild-world-simulator`
     - `npm install`
-    - `npm visualisation-install` (it might take 1-3 minutes)
+    - `npm run visualisation-install` (it might take 1-3 minutes)
     - `npm run visualisation`
 - If everything went smooth you should be able to see landing page after entering http://localhost:3000/ in your browser
 - Follow directions shown in the browser and enjoy your simulation :sunglasses:
