@@ -53,7 +53,7 @@ public class JsonParser {
         String json = null;
         try {
             ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-            writer.writeValue(new File("../results.json"), stats);
+            writer.writeValue(new File(fileName), stats);
         } catch (IOException e) {
             e.printStackTrace();
         }

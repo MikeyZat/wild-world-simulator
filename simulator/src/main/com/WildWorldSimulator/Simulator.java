@@ -21,11 +21,11 @@ public class Simulator {
         }
 
         WorldMap worldMap = new WorldMap(startingParams);
-        int iterations = 1000;
+        int ITERATIONS = 10000;
 
         Simulator.addStartingGrass(startingParams, worldMap);
         Simulator.addStartingAnimals(startingParams, worldMap);
-        Simulator.runSimulation(startingParams, worldMap, iterations, false, true);
+        Simulator.runSimulation(startingParams, worldMap, ITERATIONS, false, true);
     }
 
     public static void addStartingGrass(StartingParams startingParams, WorldMap worldMap) {
@@ -63,7 +63,7 @@ public class Simulator {
         if (saveToJson) {
             Simulator.produceFinalStats(startingParams, statistics, iterations);
         }
-        JsonParser.writeStatsToJson(statistics, "../simulationResults.json"); //UNCOMMENT THIS TO SAVE SIMULATION DATA IN JSON
+        JsonParser.writeStatsToJson(statistics, "../results.json"); //UNCOMMENT THIS TO SAVE SIMULATION DATA IN JSON
     }
 
     public static void produceFinalStats(StartingParams startingParams, List<Statistics> statistics, int iterations) {
@@ -104,9 +104,6 @@ public class Simulator {
         }
 
         Statistics finalStats = new Statistics(
-                startingParams,
-                new ArrayList<>(),
-                new ArrayList<>(),
                 animalCount / iterations,
                 grassCount / iterations,
                 averageEnergy / iterations,

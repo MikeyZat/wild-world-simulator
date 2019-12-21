@@ -36,6 +36,25 @@ public class Statistics {
         this.mainGenom = mainGenom;
     }
 
+    public Statistics(
+            int animalCount,
+            int grassCount,
+            double averageEnergy,
+            double averageChildrenNum,
+            double averageLifeLength,
+            int[] genesFrequency,
+            List <Integer> mainGenom
+    ) {
+        this.map = new int[0][0];
+        this.animalCount = animalCount;
+        this.grassCount = grassCount;
+        this.averageEnergy = averageEnergy;
+        this.averageChildrenNum = averageChildrenNum;
+        this.averageLifeLength = averageLifeLength;
+        this.genesFrequency = genesFrequency;
+        this.mainGenom = mainGenom;
+    }
+
     public void printStatistic() {
         System.out.print("animal count: " + animalCount + " ");
         System.out.print("grass count: " + grassCount + " ");

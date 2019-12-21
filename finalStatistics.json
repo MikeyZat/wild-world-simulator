@@ -1,0 +1,10 @@
+[ {
+  "map" : [ ],
+  "animalCount" : 79,
+  "grassCount" : 335,
+  "averageEnergy" : 100.09704916010485,
+  "averageChildrenNum" : 1.2095729919730278,
+  "averageLifeLength" : 130.69463239375435,
+  "genesFrequency" : [ 318, 255, 541, 311, 197, 331, 264, 316 ],
+  "mainGenom" : [ 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7 ]
+} ]
