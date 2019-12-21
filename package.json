@@ -7,8 +7,9 @@
 		"visualisation-install": "cd visualisation && npm install",
 		"start": "node server.js",
 		"server": "nodemon server.js",
-		"visualisation": "npm start --prefix visualisation",
-		"dev": "concurrently \"npm run server\" \"npm run visualisation\""
+		"client": "npm start --prefix visualisation",
+		"visualisation": "concurrently \"npm start\" \"npm run client\"",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
 	"author": "Mikolaj Zatorski",
 	"license": "MIT",
