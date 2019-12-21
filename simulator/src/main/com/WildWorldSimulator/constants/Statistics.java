@@ -12,7 +12,7 @@ public class Statistics {
     public final double averageChildrenNum;
     public final double averageLifeLength;
     public final int[] genesFrequency;
-    public final int[] mainGenom;
+    public final List <Integer> mainGenom;
 
     public Statistics(
             StartingParams startingParams,
@@ -24,7 +24,7 @@ public class Statistics {
             double averageChildrenNum,
             double averageLifeLength,
             int[] genesFrequency,
-            int[] mainGenom
+            List <Integer> mainGenom
     ) {
         this.map = getMapFromLists(animalsList, grassList, startingParams);
         this.animalCount = animalCount;
@@ -46,7 +46,11 @@ public class Statistics {
         for (int j = 0; j < genesFrequency.length; j++) {
             System.out.print(j + " - " + genesFrequency[j] + " | ");
         }
-        System.out.println("");
+        System.out.println();
+        System.out.println("Most frequent genom:");
+        mainGenom.forEach(System.out::print);
+        System.out.println();
+        System.out.println();
     }
 
     private int[][] getMapFromLists(List<Animal> animalsList, List<Grass> grassList, StartingParams startingParams){
@@ -54,7 +58,7 @@ public class Statistics {
         int [][] map = new int[startingParams.width][startingParams.height];
         for (Animal animal : animalsList) {
             Point position = animal.getPosition();
-            int mappedEnergy = (startingParams.startingEnergy/animal.getEnergy())*10;
+            int mappedEnergy = (int)(((double)animal.getEnergy()/(double)startingParams.startingEnergy)*10) + 1;
             if (map[position.x][position.y] < mappedEnergy) {
                 map[position.x][position.y] = Math.min(mappedEnergy, 9);
             }

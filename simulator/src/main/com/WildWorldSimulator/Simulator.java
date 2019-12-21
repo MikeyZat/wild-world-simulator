@@ -8,10 +8,7 @@ import com.WildWorldSimulator.constants.Statistics;
 import com.WildWorldSimulator.util.JsonParser;
 import com.WildWorldSimulator.util.JsonParserException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Simulator {
     public static void main(String[] args) {
@@ -28,8 +25,7 @@ public class Simulator {
 
         Simulator.addStartingGrass(startingParams, worldMap);
         Simulator.addStartingAnimals(startingParams, worldMap);
-
-        Simulator.runSimulation(startingParams, worldMap, iterations, true, true);
+        Simulator.runSimulation(startingParams, worldMap, iterations, false, true);
     }
 
     public static void addStartingGrass(StartingParams startingParams, WorldMap worldMap) {
@@ -77,6 +73,7 @@ public class Simulator {
         double averageChildrenNum = 0;
         double averageLifeLength = 0;
         int[] genesFrequency = new int[startingParams.genesRange];
+        Map<List<Integer>, Integer> genesMap = new HashMap<>();
         for (Statistics stats : statistics) {
             animalCount += stats.animalCount;
             grassCount += stats.grassCount;
@@ -86,7 +83,22 @@ public class Simulator {
             for (int i = 0; i < startingParams.genesRange; i++) {
                 genesFrequency[i] += stats.genesFrequency[i];
             }
+            if (genesMap.containsKey(stats.mainGenom)) {
+                Integer prev = genesMap.get(stats.mainGenom);
+                genesMap.put(stats.mainGenom, prev + 1);
+            } else {
+                genesMap.put(stats.mainGenom, 1);
+            }
         }
+        int maxFrequency = 0;
+        List <Integer> mostFrequentGenes = new ArrayList<>();
+        for (Map.Entry<List<Integer>, Integer> entry : genesMap.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                mostFrequentGenes = entry.getKey();
+                maxFrequency = entry.getValue();
+            }
+        }
+
         for (int i = 0; i < startingParams.genesRange; i++) {
             genesFrequency[i]/=iterations;
         }
@@ -101,7 +113,7 @@ public class Simulator {
                 averageChildrenNum / iterations,
                 averageLifeLength / iterations,
                 genesFrequency,
-                new int[]{}
+                mostFrequentGenes
         );
         finalStats.printStatistic();
         JsonParser.writeStatsToJson(Collections.singletonList(finalStats), "../finalStatistics.json");

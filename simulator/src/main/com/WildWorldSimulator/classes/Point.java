@@ -65,8 +65,8 @@ public class Point {
     // rands points from lower and higher coordinates INCLUSIVE
     public static Point getRandomPoint(int lowerX, int higherX, int lowerY, int higherY) {
         Random randomGenerator = new Random();
-        int x = randomGenerator.nextInt(higherX + 1) + lowerX;
-        int y = randomGenerator.nextInt(higherY + 1) + lowerY;
+        int x = randomGenerator.nextInt(higherX - lowerX + 1) + lowerX;
+        int y = randomGenerator.nextInt(higherY - lowerY + 1) + lowerY;
         return new Point(x,y);
     };
 }
