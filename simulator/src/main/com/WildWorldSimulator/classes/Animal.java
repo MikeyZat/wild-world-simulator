@@ -2,12 +2,9 @@ package com.WildWorldSimulator.classes;
 
 import com.WildWorldSimulator.constants.*;
 import com.WildWorldSimulator.interfaces.*;
-import com.WildWorldSimulator.util.AnimalSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.*;
 
-@JsonSerialize(using = AnimalSerializer.class)
 public class Animal implements IMapObject, IAnimalObserverTarget {
     private Point position;
     private MapDirection orientation;
@@ -80,7 +77,7 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         Point newPosition = position.add(orientation.toUnitVector());
         int mapWidth = map.getStartingParams().width;
         int mapHeight = map.getStartingParams().height;
-        newPosition = new Point(newPosition.x % mapWidth, newPosition.y % mapHeight);
+        newPosition = new Point(Math.floorMod(newPosition.x , mapWidth), Math.floorMod(newPosition.y , mapHeight));
         Animal animalToCopulate = map.animalAt(newPosition);
         Grass grassOnNextField = map.grassAt(newPosition);
         if (animalToCopulate != null) {
@@ -112,10 +109,10 @@ public class Animal implements IMapObject, IAnimalObserverTarget {
         Point childPosition = position.add(MapDirection.getRandomDirection().toUnitVector());
         int mapWidth = map.getStartingParams().width;
         int mapHeight = map.getStartingParams().height;
-        Point formattedPosition = new Point(childPosition.x % mapWidth, childPosition.y % mapHeight);
+        Point formattedPosition = new Point(Math.floorMod(childPosition.x , mapWidth), Math.floorMod(childPosition.y, mapHeight));
         Genes childGenes = new Genes(genes, animalToCopulate.getGenes());
         int childEnergy = energy / 4 + animalToCopulate.getEnergy() / 4;
-        Animal child = new Animal(childPosition, childGenes, childEnergy);
+        Animal child = new Animal(formattedPosition, childGenes, childEnergy);
         energy -= energy / 4;
         animalToCopulate.energy -= animalToCopulate.getEnergy() / 4;
         children.add(child);

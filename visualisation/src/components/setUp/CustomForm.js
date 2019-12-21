@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, InputNumber, Row, Col, Button } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Form, InputNumber, Row, Col, Button, message } from 'antd';
 
 const CustomForm = (props) => {
 	const { jsonData, onSubmit } = props;
@@ -10,6 +10,12 @@ const CustomForm = (props) => {
 	const [moveEnergy, setMoveEnergy] = useState(jsonData.moveEnergy);
 	const [plantEnergy, setPlantEnergy] = useState(jsonData.plantEnergy);
 	const [jungleRatio, setJungleRatio] = useState(jsonData.jungleRatio);
+
+	useEffect(() => {
+		if (height > width) {
+			message.warn('Set width to higher value than height to get better experience. The best ratio is 4:3.');
+		}
+	}, [height, width]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -39,10 +45,10 @@ const CustomForm = (props) => {
 			<Row gutter={24}>
 				<Col span={8}>
 					<Form.Item label="Width" required>
-						<InputNumber min={10} max={200} value={width} onChange={setWidth} />
+						<InputNumber min={10} max={100} value={width} onChange={setWidth} />
 					</Form.Item>
 					<Form.Item label="Height" required>
-						<InputNumber min={10} max={200} value={height} onChange={setHeight} />
+						<InputNumber min={10} max={100} value={height} onChange={setHeight} />
 					</Form.Item>
 				</Col>
 				<Col span={8}>

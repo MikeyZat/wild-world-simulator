@@ -17,9 +17,16 @@ const icons = [
 export const visualisationShaper = (data) => {
 	const genesData = [];
 	const tableData = [];
+	const mapData = [];
 
 	for (let i = 0; i < data.length; i++) {
 		const current = data[i];
+
+		// shape map data
+
+		mapData.push(current.map);
+
+		// shape bar char data
 		genesData.push({
 			values: current.genesFrequency.map((value, index) => ({
 				id: index,
@@ -33,6 +40,8 @@ export const visualisationShaper = (data) => {
 				color: colors[index],
 			})),
 		});
+
+		// shape tables data
 
 		tableData.push([
 			{
@@ -60,7 +69,12 @@ export const visualisationShaper = (data) => {
 				value: current.averageLifeLength,
 				precision: 2,
 			},
+			{
+				title: 'dominating genom',
+				value: current.averageLifeLength,
+				precision: 2,
+			},
 		]);
 	}
-	return { genesData, tableData };
+	return { mapData, genesData, tableData };
 };

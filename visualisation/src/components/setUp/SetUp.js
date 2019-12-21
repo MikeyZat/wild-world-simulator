@@ -24,7 +24,6 @@ const SetUp = (props) => {
 	}, []);
 
 	const handleSubmit = async (data) => {
-		console.log(data);
 		try {
 			await axios.post('/runSimulation', data);
 			goToSimulation();

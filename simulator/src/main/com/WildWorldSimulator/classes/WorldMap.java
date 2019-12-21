@@ -21,7 +21,7 @@ public class WorldMap implements IWorldMap {
         int jungleStartX = startingParams.width / 2 - startingParams.jungleWidth / 2;
         int jungleStartY = startingParams.height / 2 - startingParams.jungleHeight / 2;
         jungleLowerLeft = startingParams.lowerLeft.add(new Point(jungleStartX, jungleStartY));
-        jungleUpperRight = jungleLowerLeft.add(new Point(startingParams.jungleWidth, startingParams.jungleHeight));
+        jungleUpperRight = jungleLowerLeft.add(new Point(startingParams.jungleWidth-1, startingParams.jungleHeight-1));
     }
 
 
@@ -144,21 +144,21 @@ public class WorldMap implements IWorldMap {
         int grassCount = grassList.size();
         double averageEnergy = 0;
         double averageChildrenNum = 0;
-        double averageLifeLength = 0;
+        double averageLifeLength;
         for (Animal animal : animalsList) {
             averageEnergy += animal.getEnergy();
             averageChildrenNum += animal.getChildren().size();
-            averageLifeLength += animal.getLifeLength();
             int[] animalGenesfrequency = animal.getGenes().getGenesFrequency();
             for (int i = 0; i < startingParams.genesRange; i++) {
                 genesFrequency[i] += animalGenesfrequency[i];
             }
         }
-        averageEnergy /= animalCount;
-        averageChildrenNum /= animalCount;
-        averageLifeLength = (averageLifeLength + lifeLengthSummary) / (animalCount + deaths);
+        averageEnergy = animalCount > 0 ? averageEnergy/animalCount : 0;
+        averageChildrenNum = animalCount > 0 ? averageChildrenNum/animalCount : 0;
+        averageLifeLength = deaths > 0 ? (double) lifeLengthSummary/deaths : 0;
 
         return new Statistics(
+                startingParams,
                 animalsList,
                 grassList,
                 animalCount,
@@ -166,7 +166,8 @@ public class WorldMap implements IWorldMap {
                 averageEnergy,
                 averageChildrenNum,
                 averageLifeLength,
-                genesFrequency.clone()
+                genesFrequency.clone(),
+                new int[]{}
         );
 
     }
