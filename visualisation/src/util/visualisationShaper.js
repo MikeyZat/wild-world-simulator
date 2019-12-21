@@ -28,6 +28,7 @@ export const visualisationShaper = (data) => {
 
 		// shape bar char data
 		genesData.push({
+			name: <span style={{ fontSize: 28 }}>{`Dominating genom: [${current.mainGenom.join('')}]`}</span>,
 			values: current.genesFrequency.map((value, index) => ({
 				id: index,
 				label: (
@@ -66,11 +67,6 @@ export const visualisationShaper = (data) => {
 			},
 			{
 				title: 'average life length',
-				value: current.averageLifeLength,
-				precision: 2,
-			},
-			{
-				title: 'dominating genom',
 				value: current.averageLifeLength,
 				precision: 2,
 			},

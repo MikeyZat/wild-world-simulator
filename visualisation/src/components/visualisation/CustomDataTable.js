@@ -24,7 +24,7 @@ const CustomDataTable = (props) => {
 				<Row span={1} key={item.title} type="flex" justify="center" align="middle">
 					<Col span={16}>
 						<Card>
-							<Statistic title={item.title} value={item.value} precision={item.precision} />
+							<Statistic title={item.title} value={item.value} precision={item.precision} formatter={item.formatter} />
 						</Card>
 					</Col>
 				</Row>
