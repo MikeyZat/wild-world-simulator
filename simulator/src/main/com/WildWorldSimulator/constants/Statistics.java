@@ -5,16 +5,17 @@ import com.WildWorldSimulator.classes.*;
 import java.util.List;
 
 public class Statistics {
-    public final List<Animal> animalsList;
-    public final List<Grass> grassList;
+    public final int[][] map;
     public final int animalCount;
     public final int grassCount;
     public final double averageEnergy;
     public final double averageChildrenNum;
     public final double averageLifeLength;
     public final int[] genesFrequency;
+    public final int[] mainGenom;
 
     public Statistics(
+            StartingParams startingParams,
             List<Animal> animalsList,
             List<Grass> grassList,
             int animalCount,
@@ -22,16 +23,17 @@ public class Statistics {
             double averageEnergy,
             double averageChildrenNum,
             double averageLifeLength,
-            int[] genesFrequency
+            int[] genesFrequency,
+            int[] mainGenom
     ) {
-        this.animalsList = animalsList;
-        this.grassList = grassList;
+        this.map = getMapFromLists(animalsList, grassList, startingParams);
         this.animalCount = animalCount;
         this.grassCount = grassCount;
         this.averageEnergy = averageEnergy;
         this.averageChildrenNum = averageChildrenNum;
         this.averageLifeLength = averageLifeLength;
         this.genesFrequency = genesFrequency;
+        this.mainGenom = mainGenom;
     }
 
     public void printStatistic() {
@@ -45,5 +47,22 @@ public class Statistics {
             System.out.print(j + " - " + genesFrequency[j] + " | ");
         }
         System.out.println("");
+    }
+
+    private int[][] getMapFromLists(List<Animal> animalsList, List<Grass> grassList, StartingParams startingParams){
+
+        int [][] map = new int[startingParams.width][startingParams.height];
+        for (Animal animal : animalsList) {
+            Point position = animal.getPosition();
+            int mappedEnergy = (startingParams.startingEnergy/animal.getEnergy())*10;
+            if (map[position.x][position.y] < mappedEnergy) {
+                map[position.x][position.y] = Math.min(mappedEnergy, 9);
+            }
+        }
+        for (Grass grass : grassList){
+            Point position = grass.getPosition();
+            map[position.x][position.y] = 10;
+        }
+        return map;
     }
 }
